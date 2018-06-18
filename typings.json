@@ -1,0 +1,10 @@
+{
+  "name": "tuho2.0",
+  "globalDependencies": {
+    "angular": "registry:dt/angular#1.5.0+20161101124950",
+    "angular-local-storage": "github:DefinitelyTyped/DefinitelyTyped/angular-local-storage/angular-local-storage.d.ts#98adc216e899d505fd8e033aeead6c55dba8940e",
+    "angular-ui-bootstrap": "github:DefinitelyTyped/DefinitelyTyped/angular-ui-bootstrap/angular-ui-bootstrap.d.ts#98adc216e899d505fd8e033aeead6c55dba8940e",
+    "angular-ui-router": "github:DefinitelyTyped/DefinitelyTyped/angular-ui-router/angular-ui-router.d.ts#98adc216e899d505fd8e033aeead6c55dba8940e",
+    "jquery": "github:DefinitelyTyped/DefinitelyTyped/jquery/jquery.d.ts#98adc216e899d505fd8e033aeead6c55dba8940e"
+  }
+}

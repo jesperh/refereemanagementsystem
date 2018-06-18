@@ -1,0 +1,31 @@
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ng-href="/">T.U.H.O 2.0 </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class=""><a href="/admin">Admin</a></li>
+                    <li class=""><a href="/admin/users">Käyttäjä</a></li>
+                    <li class=""><a href="/admin/referees">Tuomarit</a></li>
+                    <li class=""><a href="/admin/courts/list">Kentät</a></li>
+                    <li class=""><a href="/admin/map">Kenttäkartta</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-if="main.loggedin()==true"><a ng-href="/user">Omat asetukset</a></li>
+                    <li ng-if="!main.loggedin()"><a ng-href="/register">Rekisteröidy</a></li>
+                    <li data-login=""></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div ui-view class="ui-view-container"></div>
+</div>

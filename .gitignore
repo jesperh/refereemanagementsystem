@@ -1,0 +1,9 @@
+bower_components/
+node_modules/
+.sass-cache/
+.tscache/
+public/partials
+migrations
+seeders
+database-tuho
+/bower_components

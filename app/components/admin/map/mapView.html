@@ -1,0 +1,79 @@
+<div class="">
+    <nav class="navbar navbar-default" style="margin-bottom:0px;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ng-href="/">T.U.H.O 2.0 </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class=""><a href="/admin">Admin</a></li>
+                    <li class=""><a href="/admin/users">Käyttäjä</a></li>
+                    <li class=""><a href="/admin/referees">Tuomarit</a></li>
+                    <li class=""><a href="/admin/courts/list">Kentät</a></li>
+                    <li class=""><a href="/admin/map">Kenttäkartta</a></li>
+
+                </ul>
+
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
+
+    <div class="row">
+
+        <div class="col-md-4 header-bg" style="padding:0;">
+            <div class="tuho-full-width-box">
+                <table>
+                    <thead>
+                        <tr>
+                            <!--<th>Kenttä</th>-->
+                            <th>Tuomari</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <!--<td class="map__filter-table-cell">-->
+                                <!--<input style="width:70px;" type="text" ng-model="findCourtValue" class="form-control">-->
+                            <!--</td>-->
+                            <td>
+                                <input type="text" ng-change="vm.clearSelectedReferee(vm.selectedReferee)" ng-model="vm.selectedReferee" uib-typeahead="referee as referee.fullname for referee in vm.refereesList | filter: {fullname: $viewValue} | limitTo:5" typeahead-on-select="model=$item.value; vm.findRefereeCourt(vm.selectedReferee)" class="form-control">
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="col-md-8 header-bg" style="padding:0;">
+            <p style="font-weight: bold">Värikoodit:</p>
+            <span class="map-court-circle-1825 color-explanations">&nbsp;</span> 18:25 <span class="map-court-circle-1740 color-explanations">&nbsp;</span> 17:40
+            <span class="map-court-circle-1655 color-explanations">&nbsp;</span> 16:55 <span style="width:40px" class="map-court-circle-1610 color-explanations">&nbsp;</span> 16:10
+            <span class="map-court-circle-1525 color-explanations">&nbsp;</span> 15:25 <span class="map-court-circle-1440 color-explanations">&nbsp;</span> 14:40
+            <span class="map-court-circle-1155 color-explanations">&nbsp;</span> 11:55
+            <br/>
+            <br/>
+            <br/>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12 header-bg" style="padding:0;">
+            <div class="tuho-full-width-box">
+                <!--<h3 style="margin-top:0">Turnaukset</h3>-->
+                <!--<p><label>Etsi: <input type="text"></label></p>-->
+                <leaflet markers="markers" paths="paths" defaults="defaults" center="center" height="580px" width="100%"></leaflet>
+            </div>
+        </div>
+    </div>
+
+
+</div> <!-- /container -->
+

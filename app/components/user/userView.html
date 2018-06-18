@@ -1,0 +1,179 @@
+<div class="row">
+    <div class="col-md-12 header-bg" style="padding:0;">
+        <div class="tuho-box-heading">
+            <h3>Muokkaa tietojasi</h3>
+        </div>
+        <div class="tuho-full-width-box">
+
+            <div class="col-md-6">
+                <form id="edit-form" name="editForm" ng-submit="rg.submitForm(editForm.$valid)" novalidate
+                      class="form-horizontal" style="padding-top:10px;">
+                    <div class="form-input-container">
+                        <fieldset>
+                            <legend>
+                                <span class="number-circle">1</span>
+                                <span>Perustiedot</span>
+                            </legend>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div ng-class="{ 'has-error': (editForm.firstname.$touched || rg.formError) && editForm.firstname.$invalid }"
+                                         class="col-md-6">
+                                        <label for="firstname">Etunimi</label>
+                                        <input ng-model="rg.oldUser.firstname" type="text" name="firstname"
+                                               class="form-control" id="firstname" placeholder="Etunimi" required>
+
+                                        <div class="help-block" ng-messages="editForm.firstname.$error"
+                                             ng-if="editForm.firstname.$touched || rg.formError">
+                                            <p ng-message="required">Tämä on pakollinen kenttä.</p>
+                                        </div>
+                                    </div>
+                                    <div ng-class="{ 'has-error': (editForm.lastname.$touched || rg.formError) && editForm.lastname.$invalid }"
+                                         class="col-md-6">
+                                        <label for="lastname">Sukunimi</label>
+                                        <input ng-model="rg.oldUser.lastname" type="text" class="form-control"
+                                               name="lastname" id="lastname" placeholder="Sukunimi" required>
+                                        <div class="help-block register-error" ng-messages="editForm.lastname.$error"
+                                             ng-if="editForm.lastname.$touched || rg.formError">
+                                            <p ng-message="required">Tämä on pakollinen kenttä.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-class="{ 'has-error': (editForm.email.$touched || rg.formError) && editForm.email.$invalid }"
+                                 class="form-group">
+                                <label for="email">Sähköpostiosoite</label>
+                                <input ng-model="rg.oldUser.email" ng-change="rg.validateEmail()" type="email"
+                                       class="form-control" name="email" id="email" placeholder="Sähköpostiosoite"
+                                       required>
+                                <div class="help-block" ng-messages="editForm.email.$error"
+                                     ng-if="editForm.email.$touched || rg.formError">
+                                    <p ng-message="required">Tämä on pakollinen kenttä.</p>
+                                    <p ng-message="email">Sähköpostiosoite on virheellinen.</p>
+                                    <p ng-message="emailtaken">Sähköpostiosoite on jo käytössä.</p>
+                                </div>
+                            </div>
+
+                            <div ng-class="{ 'has-error': (editForm.phonenumber.$touched || rg.formError) && editForm.phonenumber.$invalid }"
+                                 class="form-group">
+                                <label for="phonenumber">Puhelinnumero</label>
+                                <input ng-model="rg.oldUser.phonenumber" ng-minlength="7" ng-maxlength="14"
+                                       type="phonenumber" class="form-control" name="phonenumber" id="phonenumber"
+                                       placeholder="Puhelinnumero" required>
+                                <div class="help-block" ng-messages="editForm.phonenumber.$error"
+                                     ng-if="editForm.phonenumber.$touched || rg.formError">
+                                    <p ng-message="required">Tämä on pakollinen kenttä.</p>
+                                    <p ng-message="phonenumber">Puhelinnumero on virheellinen.</p>
+                                    <p ng-message="phonenumberaken">Puhelinnumero on jo käytössä.</p>
+                                    <p ng-message="minlength">Puhelinnumero on liian lyhyt.</p>
+                                    <p ng-message="maxlength">Puhelinnumero on liian pitkä.</p>
+                                </div>
+                            </div>
+                            <hr style="margin-bottom: 10px; margin-top: 5px;"/>
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div ng-class="{ 'has-error': (editForm.newPassword.$touched || rg.formError) && editForm.newPassword.$invalid }"
+                                         class="col-md-6">
+                                        <label for="newPassword">Uusi salasana</label>
+                                        <input ng-model="rg.oldUser.newPassword" ng-change="rg.validatePassword()"
+                                               ng-minlength="4" type="password" class="form-control" name="newPassword"
+                                               id="newPassword" placeholder="Uusi salasana">
+
+                                        <div class="help-block" ng-messages="editForm.newPassword.$error"
+                                             ng-if="editForm.newPassword.$touched || rg.formError">
+                                            <p ng-message="minlength">Salasanan pitää olla vähintään 4 merkkiä.</p>
+                                        </div>
+
+                                    </div>
+
+                                    <div ng-class="{ 'has-error': (editForm.password.$touched || rg.formError) && editForm.password.$invalid }"
+                                         class="col-md-6">
+                                        <label for="password">Nykyinen salasana</label>
+                                        <input ng-model="rg.oldUser.password" ng-minlength="4" type="password"
+                                               class="form-control" name="password" id="password"
+                                               placeholder="Nykyinen salasana">
+
+                                        <div class="help-block"
+                                             ng-if="editForm.newPassword.$touched && rg.oldUser.newPassword.length > 0 && (rg.oldUser.password==undefined || rg.oldUser.password.length == 0)">
+                                            <p>Muista antaa vanha salasana :)</p>
+                                        </div>
+
+                                        <div class="help-block" ng-messages="editForm.password.$error"
+                                             ng-if="editForm.password.$touched || rg.formError">
+                                            <p ng-message="minlength">Salasanan pitää olla vähintään 4 merkkiä.</p>
+                                            <p ng-message="invalidoldpassword">Antamasi salasana ei täsmännyt nykyiseen
+                                                salasanaasi.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>
+                                <span class="number-circle">2</span>
+                                <span>Lisätiedot</span>
+                            </legend>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="firstname">Minua kiinnostaa:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <ul class="registration-form-interests-list text-left">
+                                            <li>
+                                                <input ng-model="rg.oldUser.interestedReferee" id="interest-referee"
+                                                       type="checkbox">
+                                                <label for="interest-referee">Tuomarointi</label>
+                                            </li>
+                                            <li>
+                                                <input ng-model="rg.oldUser.interestedMisc" id="interest-misc"
+                                                       type="checkbox">
+                                                <label for="interest-misc">Sekalaiset talkootyöt</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group"
+                                 ng-class="{ 'has-error': (editForm.experience.$touched || rg.formError) && editForm.experience.$invalid }">
+                                <label for="experience">Montako kertaa olet ollut tuomarina MM-kyykässä?</label>
+                                <input style="width:70px" ng-model="rg.oldUser.experience" min="0" max="25"
+                                       type="number" name="experience" class="form-control" id="experience">
+                                <div class="help-block" ng-messages="editForm.experience.$error"
+                                     ng-if="editForm.experience.$touched || rg.formError">
+                                    <p ng-message="min">Minimi on 0</p>
+                                    <p ng-message="max">Maksimi on 25</p>
+                                    <p ng-message="number">Arvon pitää olla numero</p>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>
+
+                            </legend>
+                        </fieldset>
+                        <div class="form-group">
+                            <button ng-disabled="rg.isLoading" style="width:150px; margin-bottom:10px"
+                                    class="btn btn-success">Päivitä tiedot
+                            </button>
+                        </div>
+                        <span ng-if="rg.isLoading && !rg.formError && !rg.serverError">Ladataan...</span>
+                        <uib-alert ng-if="rg.formError" type="danger">Lomakkeessa ilmeni virheitä. Korjaa virheet ja
+                            koita uudelleen &nbsp; &#9786;
+                        </uib-alert>
+                        <uib-alert ng-if="rg.serverError" type="danger">Palvelimen puolella sattui virhe.. Kokeile
+                            tallentamista uudelleen kirjautumalla ensin ulos ja sitten takaisin sisään. <br/> Jos
+                            ongelma toistuu, ota yhteyttä example@example.com &nbsp;
+                        </uib-alert>
+                        <uib-alert ng-if="rg.formSuccess" type="success">Tietojen muuttaminen onnistui! Sinut ohjataan
+                            nyt etusivulle.<br/> <a href="#/">Klikkaa tästä jos automaatinen ohjaus ei toimi.</a>
+                        </uib-alert>
+                        <div style="height: 40px;"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

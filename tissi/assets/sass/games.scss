@@ -1,0 +1,89 @@
+.games__game-status-label {
+  float: right;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.games__arrow-right {
+  position: absolute;
+  right: 7px;
+  bottom: 18px;
+}
+
+.game-list {
+  a {
+    color:rgb(67, 74, 84);
+  }
+}
+
+.td.games__team-name {
+  font-weight: 500;
+}
+
+.games__result-winner {
+  .games__team-label {
+    color: $winner-color;
+    font-size:110%;
+    font-weight: 500;
+    text-decoration: underline;
+  }
+  .games__team-score {
+    color: $winner-color;
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: underline;
+  }
+}
+
+.games__result-loser {
+  .games__team-label {
+    color: $loser-color;
+  }
+  .games__team-score {
+    font-size: 20px;
+    color: $loser-color;
+  }
+}
+
+.games__winner-team-label {
+  color: $winner-color;
+  font-size:110%;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.games__loser-team-label {
+  color: $loser-color;
+}
+
+.games__winner-team-score {
+  color: $winner-color;
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.games__loser-team-score {
+  font-size: 20px;
+  color: $loser-color;
+}
+
+.games__list-table {
+  width:100%;
+  max-width:100%;
+}
+
+.games__new-game-block {
+  padding-top:15px;
+  display: block;
+}
+
+.games__past-games-block {
+  background-color:white;
+}
+
+.games__past-games-label {
+  padding:5px;
+  padding-left: 15px;
+}

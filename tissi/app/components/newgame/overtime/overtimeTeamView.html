@@ -1,0 +1,85 @@
+<ng-form name="formName">
+    <fieldset>
+        <div class="media-body">
+            <h3 class="newgame__half-team-name">{{ teamName }}</h3>
+            <h5>{{ score.gameTotalScore }}</h5>
+            <div class="">
+
+                <!-- AKKAS -->
+                <div class="row game__score-input">
+                    <div class="col-xs-5">
+                        <input class="form-control" type="number" ng-model="score.akkas"
+                               ng-change="calculateScore({score:score})" min="0" max="8"
+                               name="overtimeteam1akkas"/>
+                    </div>
+                    <div class="col-xs-7">
+                        <span class="game__team-score-display">Akkaa (-2p) </span>
+                        <span tooltip-placement="left" tooltip-append-to-body="true"
+                              uib-tooltip="Akka on pelineliön sisään tai pelineliöiden väliin keskialueelle jäänyt kyykkä.">
+                              <i class="fa fa-question-circle"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- AKKA ERRORS -->
+                <div class="help-block" ng-messages="formName.overtimeteam1akkas.$error"
+                     ng-if="formName.overtimeteam1akkas.$touched">
+                    <p style="padding:5px" class="bg-danger tuho-fade" ng-message="min">
+                        <i class="fa fa-warning"></i>
+                        Akkoja ei voi olla jäljellä vähempää kuin 0 kpl.
+                    </p>
+
+                    <p style="padding:5px" class="bg-danger tuho-fade" ng-message="max">
+                        <i class="fa fa-warning"></i>
+                        Akkoja voi olla enintään jäljellä 8 kpl.
+                    </p>
+                </div>
+
+                <!-- PAPPIS -->
+                <div class="row game__score-input newgame__team2-score-block">
+
+                    <div class="col-xs-5">
+                        <input class="form-control" type="number" ng-model="score.pappis"
+                               ng-change="calculateScore({score:score})" min="-10" max="8"
+                               name="overtimeteam1pappis"/>
+                    </div>
+
+                    <div class="col-xs-7">
+                        <span class="game__team-score-display">Pappia (-1p) </span>
+                        <span tooltip-placement="left" tooltip-append-to-body="true"
+                              uib-tooltip="Pappi on pelineliön sivu- tai takarajalle jäänyt kyykkä.">
+                          <i class="fa fa-question-circle"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- PAPPI ERRORS -->
+                <div class="help-block"
+                     ng-if="formName.overtimeteam1pappis.$touched && score.pappis < 0">
+                    <p style="padding:5px" class="bg-warning tuho-fade">
+                        <i class="fa fa-exclamation-circle"></i>
+                        Huom: negatiivinen lukumäärä pappeja tarkoittaa heittämättömiä karttuja, eli plus-pisteitä.
+                    </p>
+                </div>
+
+                <div class="help-block" ng-messages="formName.overtimeteam1pappis.$error"
+                     ng-if="formName.overtimeteam1pappis.$touched">
+                    <p style="padding:5px" class="bg-danger tuho-fade" ng-message="min">
+                        <i class="fa fa-warning"></i>
+                        Pappeja ei voi olla jäljellä vähempää kuin -10 kpl. </p>
+
+                    <p style="padding:5px" class="bg-danger tuho-fade" ng-message="max">
+                        <i class="fa fa-warning"></i>
+                        Akkoja voi olla jäljellä enintään 40 kpl.</p>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-12 ">
+                        <span class="b500 game__team-score-display">Tulos: {{ score.totalScore}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</ng-form>

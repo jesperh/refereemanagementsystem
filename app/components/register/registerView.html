@@ -1,0 +1,202 @@
+<div class="row">
+    <div class="col-md-12 header-bg" style="padding:0;">
+        <div class="tuho-box-heading">
+            <h3>Rekisteröidy</h3>
+        </div>
+        <div class="tuho-full-width-box">
+            <div class="col-md-6 pull-right">
+
+                <div class="registration-form-headline">
+                    <p>
+                        Ilmoittaudu tuomariksi rekisteröimällä itsellesi käyttäjäprofiili. Käyttäjätunnuksilla pääset
+                        sisään talkoolaisten portaaliin. Näillä samoilla tunniksilla
+                        ilmoittamaan tuloksia varsinaisena kyykkäpäivänä sähköisesti mobiilisovelluksen avulla.
+                    </p>
+                    <p>
+                        Lomakkeessa voit myös ilmoittaa, mitä talkoilun osa-alueita sinua kiinnostaisi tehdä.
+                        Rekisteröityminen ei sido sinua vielä mihinkään.
+                    </p>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <form id="register-form" name="registerForm" ng-submit="rg.submitForm(registerForm.$valid)" novalidate
+                      class="form-horizontal" style="padding-top:10px;">
+                    <div class="form-input-container">
+                        <fieldset>
+                            <legend>
+                                <span class="number-circle">1</span>
+                                <span>Perustiedot</span>
+                                <span class="legend-small-text">nää on kaikki pakollisia kenttiä &#9786;</span>
+                            </legend>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div ng-class="{ 'has-error': (registerForm.firstname.$touched || rg.formError) && registerForm.firstname.$invalid }"
+                                         class="col-md-6">
+                                        <label for="firstname">Etunimi</label>
+                                        <input ng-model="rg.newUser.firstname" type="text" name="firstname"
+                                               class="form-control" id="firstname" placeholder="Etunimi" required>
+
+                                        <div class="help-block" ng-messages="registerForm.firstname.$error"
+                                             ng-if="registerForm.firstname.$touched || rg.formError">
+                                            <p ng-message="required">Tämä on pakollinen kenttä.</p>
+                                        </div>
+                                        <!--<p class="help-block">Example block-level help text here.</p>-->
+                                    </div>
+                                    <div ng-class="{ 'has-error': (registerForm.lastname.$touched || rg.formError) && registerForm.lastname.$invalid }"
+                                         class="col-md-6">
+                                        <label for="lastname">Sukunimi</label>
+                                        <input ng-model="rg.newUser.lastname" type="text" class="form-control"
+                                               name="lastname" id="lastname" placeholder="Sukunimi" required>
+                                        <!--<p ng-show="registerForm.lastname.$invalid && !registerForm.lastname.$pristine" class="help-block">Tämä on pakollinen kenttä.</p>-->
+                                        <div class="help-block register-error"
+                                             ng-messages="registerForm.lastname.$error"
+                                             ng-if="registerForm.lastname.$touched || rg.formError">
+                                            <p ng-message="required">Tämä on pakollinen kenttä.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-class="{ 'has-error': (registerForm.email.$touched || rg.formError) && registerForm.email.$invalid }"
+                                 class="form-group">
+                                <label for="email">Sähköpostiosoite</label>
+                                <input ng-model="rg.newUser.email" ng-change="rg.validateEmail()" type="email"
+                                       class="form-control" name="email" id="email" placeholder="Sähköpostiosoite"
+                                       required>
+                                <div class="help-block" ng-messages="registerForm.email.$error"
+                                     ng-if="registerForm.email.$touched || rg.formError">
+                                    <p ng-message="required">Tämä on pakollinen kenttä.</p>
+                                    <p ng-message="email">Sähköpostiosoite on virheellinen.</p>
+                                    <p ng-message="emailtaken">Sähköpostiosoite on jo käytössä.</p>
+                                </div>
+                            </div>
+
+                            <div ng-class="{ 'has-error': (registerForm.phonenumber.$touched || rg.formError) && registerForm.phonenumber.$invalid }"
+                                 class="form-group">
+                                <label for="phonenumber">Puhelinnumero</label>
+                                <input ng-model="rg.newUser.phonenumber" ng-minlength="7" ng-maxlength="14"
+                                       type="phonenumber" class="form-control" name="phonenumber" id="phonenumber"
+                                       placeholder="Puhelinnumero" required>
+                                <div class="help-block" ng-messages="registerForm.phonenumber.$error"
+                                     ng-if="registerForm.phonenumber.$touched || rg.formError">
+                                    <p ng-message="required">Tämä on pakollinen kenttä.</p>
+                                    <p ng-message="phonenumber">Puhelinnumero on virheellinen.</p>
+                                    <p ng-message="phonenumberaken">Puhelinnumero on jo käytössä.</p>
+                                    <p ng-message="minlength">Puhelinnumero on liian lyhyt.</p>
+                                    <p ng-message="maxlength">Puhelinnumero on liian pitkä.</p>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div ng-class="{ 'has-error': (registerForm.username.$touched || rg.formError) && registerForm.username.$invalid }"
+                                         class="col-md-6">
+                                        <label for="username">Käyttäjätunnus</label>
+                                        <input ng-model="rg.newUser.username" ng-change="rg.validateUsername()"
+                                               ng-minlength="2" class="form-control" name="username" id="username"
+                                               placeholder="Käyttäjätunnus" required>
+
+                                        <div class="help-block register-error"
+                                             ng-messages="registerForm.username.$error"
+                                             ng-if="registerForm.username.$touched || rg.formError">
+                                            <p ng-message="required">Tämä on pakollinen kenttä.</p>
+                                            <p ng-message="minlength">Käyttäjätunnuksen pitää olla vähintään 2
+                                                merkkiä.</p>
+                                            <p ng-message="usernametaken">Käyttäjätunnus on jo käytössä.</p>
+                                        </div>
+
+                                    </div>
+                                    <div ng-class="{ 'has-error': (registerForm.password.$touched || rg.formError) && registerForm.password.$invalid }"
+                                         class="col-md-6">
+                                        <label for="password">Salasana</label>
+                                        <input ng-model="rg.newUser.password" ng-minlength="4" type="password"
+                                               class="form-control" name="password" id="password" placeholder="Salasana"
+                                               required>
+
+                                        <div class="help-block" ng-messages="registerForm.password.$error"
+                                             ng-if="registerForm.password.$touched || rg.formError">
+                                            <p ng-message="required">Tämä on pakollinen kenttä.</p>
+                                            <p ng-message="minlength">Salasanan pitää olla vähintään 4 merkkiä.</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>
+                                <span class="number-circle">2</span>
+                                <span>Lisätiedot</span>
+                                <span class="legend-small-text">näihin ei ole ihan pakko vastata jos ei jaksa <small>&#9829;</small></span>
+                            </legend>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="firstname">Minua kiinnostaa:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <ul class="registration-form-interests-list text-left">
+                                            <li>
+                                                <input ng-model="rg.newUser.interestedReferee" id="interest-referee"
+                                                       type="checkbox">
+                                                <label for="interest-referee">Tuomarointi</label>
+                                            </li>
+                                            <li>
+                                                <input ng-model="rg.newUser.interestedMisc" id="interest-misc"
+                                                       type="checkbox">
+                                                <label for="interest-misc">Sekalaiset talkootyöt</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group"
+                                 ng-class="{ 'has-error': (registerForm.experience.$touched || rg.formError) && registerForm.experience.$invalid }">
+                                <label for="experience">Montako kertaa olet ollut tuomarina MM-kyykässä?</label>
+                                <input style="width:70px" ng-model="rg.newUser.experience" min="0" max="25"
+                                       type="number" class="form-control" name="experience" id="experience">
+
+                                <div class="help-block" ng-messages="registerForm.experience.$error"
+                                     ng-if="registerForm.experience.$touched || rg.formError">
+                                    <p ng-message="min">Minimi on 0</p>
+                                    <p ng-message="max">Maksimi on 25</p>
+                                    <p ng-message="number">Arvon pitää olla numero</p>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="greetings">Terveiset päätuomareille</label>
+                                <textarea ng-model="rg.newUser.greetings" class="form-control" id="greetings"
+                                          placeholder="Tänne voit kirjoittaa terveisesi MM-kyykän päätuomareille"></textarea>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>
+                                <span class="number-circle">3</span>
+                                <span>Valmis!</span>
+                                <span class="legend-small-text">&#9834; oh yeah &#9834;</span>
+                            </legend>
+                        </fieldset>
+                        <div class="form-group">
+                            <button style="width:150px; margin-bottom:10px" class="btn btn-success">Lähetä</button>
+                        </div>
+                        <span ng-if="rg.isLoading && !rg.formError && !rg.serverError">Ladataan...</span>
+                        <uib-alert ng-if="rg.formError" type="danger">Lomakkeessa ilmeni virheitä. Korjaa virheet ja
+                            koita uudelleen &nbsp; &#9786;
+                        </uib-alert>
+                        <uib-alert ng-if="rg.serverError" type="danger">Palvelimen puolella sattui virhe.. Kokeile
+                            rekisteröitymistä uudelleen. <br/> Jos ongelma toistuu, ota yhteyttä example@example.com
+                            &nbsp;
+                        </uib-alert>
+                        <uib-alert ng-if="rg.formSuccess" type="success">Rekisteröityminen onnistui! Sinut on kirjattu
+                            automaattisesti sisään ja ohjataan nyt etusivulle.<br/> <a href="/">Klikkaa tästä jos
+                                automaatinen ohjaus ei toimi.</a></uib-alert>
+                        <div style="height: 40px;"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

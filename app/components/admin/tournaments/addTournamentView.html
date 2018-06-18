@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-md-12 header-bg" style="padding:0;">
+        <div class="tuho-box-heading">
+            <h3>Lisää uusi turnaus</h3>
+        </div>
+        <div class="tuho-full-width-box">
+            <div class="col-md-6 pull-right">
+
+                <div class="registration-form-headline">
+                    <p>
+                        Tätä käytetään uusien turnauksien luomiseen. Turnauksella tarkoitetaan yhtä kyykkäkisaa. Saattaa taipua myös muuhun käyttöön.<br/>
+                        Tuomarit/Helpperit liittyvät aina johonkin turnaukseen,
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <form id="register-form" name="tournamentForm" ng-submit="vm.submitForm(tournamentForm.$valid)" novalidate class="form-horizontal" style="padding-top:10px;">
+                    <div class="form-input-container">
+                        <fieldset>
+
+                            <div ng-class="{ 'has-error': (tournamentForm.title.$touched || vm.formError) && tournamentForm.title.$invalid }" class="form-group">
+                                <label for="title">Turnauksen nimi</label>
+                                <input ng-model="vm.tournament.title" ng-minlength="4" ng-maxlength="255" class="form-control" name="title" id="title" placeholder="Nimi" required>
+
+                                <div class="help-block" ng-messages="tournamentForm.title.$error" ng-if="tournamentForm.title.$touched || vm.formError">
+                                    <p ng-message="required">Tämä on pakollinen kenttä.</p>
+                                    <p ng-message="minlength">Nimi on liian lyhyt.</p>
+                                    <p ng-message="maxlength">Nimi on liian pitkä.</p>
+                                </div>
+                            </div>
+
+                            <div ng-class="{ 'has-error': (tournamentForm.year.$touched || vm.formError) && tournamentForm.year.$invalid }" class="form-group">
+                                <label for="year">Vuosiluku</label>
+                                <input ng-model="vm.tournament.year"  ng-minlength="4" ng-maxlength="4"  class="form-control" name="year" id="year" placeholder="Vuosiluku" required>
+
+                                <div class="help-block" ng-messages="tournamentForm.year.$error" ng-if="tournamentForm.year.$touched || vm.formError">
+                                    <p ng-message="required">Tämä on pakollinen kenttä.</p>
+                                    <p ng-message="minlength">Vuosiluku on liian lyhyt.</p>
+                                    <p ng-message="maxlength">Vuosiluku on liian pitkä.</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button style="width:150px; mavmin-bottom:10px" class="btn btn-success">Lähetä</button>
+                            </div>
+
+                        </fieldset>
+
+
+                        <span ng-if="vm.isLoading && !vm.formError && !vm.serverError">Ladataan...</span>
+                        <uib-alert ng-if="vm.formError" type="danger">Lomakkeessa ilmeni virheitä. Korjaa virheet ja koita uudelleen &nbsp; &#9786; </uib-alert>
+                        <uib-alert ng-if="vm.serverError" type="danger">Palvelimen puolella sattui virhe.. Kokeile rekisteröitymistä uudelleen. <br/> Jos ongelma toistuu, ota yhteyttä example@example.com &nbsp; </uib-alert>
+                        <uib-alert ng-if="vm.formSuccess" type="success">Uusi turnaus lisättiin onnistuneesti!</uib-alert>
+                        <div style="height: 40px;"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

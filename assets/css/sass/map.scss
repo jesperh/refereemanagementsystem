@@ -1,0 +1,125 @@
+/// <reference path="colors.scss" />
+.leaflet-map-number {
+  position: relative;
+  //top: -10px;
+  font-size: 12px;
+
+  text-align: center;
+}
+
+.map-court-square-marker {
+  @extend .leaflet-map-number;
+  z-index: 10;
+}
+
+.map-court-circle-marker {
+  @extend .leaflet-map-number;
+  z-index: 99;
+}
+
+.map-court-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+  border:1px solid black;
+  z-index:99;
+}
+
+.map-court-square {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  border:1px solid black;
+}
+
+.map-court-circle-referee {
+  @extend .map-court-circle;
+  background-color: #b3ff85;
+}
+
+.map-court-circle-empty {
+  @extend .map-court-square;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.map-court-circle-1155 {
+  @extend .map-court-square;
+  background-color: rgba(127, 255, 2, 0.95);
+}
+
+.map-court-circle-1440 {
+  @extend .map-court-square;
+  background-color: rgba(240, 255, 6, 0.95);
+}
+
+.map-court-circle-1525 {
+  @extend .map-court-square;
+  background-color: rgba(255, 207, 2, 0.95);
+}
+
+.map-court-circle-1610 {
+  @extend .map-court-square;
+  background-color: rgba(255, 135, 0, 0.95);
+}
+
+.map-court-circle-1655 {
+   @extend .map-court-square;
+   background-color: rgba(255, 67, 0, 0.95);
+ }
+
+.map-court-circle-1740 {
+  @extend .map-court-square;
+  background-color: rgba(255, 0, 10, 0.95);
+}
+
+.map-court-circle-1825 {
+  @extend .map-court-square;
+  background-color: rgba(255, 0, 235, 0.95);
+}
+
+
+
+
+
+.map-court-problem {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+
+  border-bottom: 12px solid #d62625;
+
+}
+
+.map-court-message-container {
+
+  min-width: 200px;
+
+
+  p {
+    font-size:14px;
+    margin-top:0 !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+  }
+  
+  .court-message-heading {
+    font-size:110%;
+    font-weight: bold;
+    margin-bottom:5px;
+  }
+  
+}
+
+.map__filter-table-cell {
+  padding-right: 10px;
+}
+
+.color-explanations {
+  width:40px;
+  display: inline-block;
+}

@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-md-12 header-bg" style="padding:0;">
+        <div class="tuho-box-heading">
+            <h3>Resetoi salasanasi</h3>
+        </div>
+        <div class="tuho-full-width-box">
+
+            <div class="col-sm-12">
+                <div class="row">
+                    <form class="form col-sm-12 col-md-6 center-block">
+                        <p class="">
+                            Anna alla olevaan kenttään rekisteröimäsi käyttäjänimi tai sähköpostiosoite. Sinulle
+                            lähetetään sähköpostiin linkki salasanan resetointiin.
+                        </p>
+
+                        <div class="form-group" ng-class="{ 'has-error': vm.usernameError}">
+                            <input ng-disabled="vm.resetSucceeded == true" type="text" ng-model="vm.usernameOrEmail"
+                                   class="form-control input"
+                                   placeholder="Käyttäjänimi tai sähköpostiosoite">
+
+                            <p ng-if="vm.noCredential" class="help-block">Käyttäjänimi tai sähköpostiosoite
+                                unohtui :)</p>
+                        </div>
+
+                        <div class="form-group">
+                            <button ng-disabled="vm.isLoading || vm.resetSucceeded == true"
+                                    ng-click="vm.resetPw(vm.usernameOrEmail)"
+                                    class="btn btn-primary btn-block" style="margin-bottom:7px;">Resetoi salasana
+                            </button>
+                        </div>
+                        <p ng-if="vm.isLoading">Resetoidaan...</p>
+
+                        <uib-alert ng-if="vm.serverError==true" type="danger">
+                            Palvelimen puolella sattui virhe.. <br/> Jos ongelma toistuu, ota yhteyttä
+                            example@example.com &nbsp;
+                        </uib-alert>
+                        <uib-alert ng-if="vm.invalidCredential==true" type="danger">Virhe: Antamallasi käyttäjänimellä
+                            tai
+                            sähköpostiosoitteella ei löytynyt yhtään käyttäjää.
+                        </uib-alert>
+                        <uib-alert ng-if="vm.resetSucceeded" type="success">Sinulle on nyt lähetetty linkki salasanan
+                            resetointiin sähköpostiisi.
+                        </uib-alert>
+                    </form>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 center-block">
+                        <p><a data-login-plain="">Kirjaudu sisään</a> tai <a href="/register">Rekisteröidy</a></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <br/>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+$border-radius-base:        0 !default;
+$border-radius-large:       0 !default;
+$border-radius-small:       0 !default;
+$navbar-background-color:                    $tissi-pink !default;
+$navbar-background-color-active:             #FF8FA5 !default;
+
+$navbar-font-color:                          $white !default;
+$navbar-item-background-color-hover:         $navbar-background-color-active !default;
+
+$navbar-inverse-background-color:            $black !default;
+
+$body-bg:                                    $clouds !default;
+$body-background-color:                      $clouds !default;
+
+//------------------------------------------------------
+$tab-background-color:                 white !default;
+$tab-background-color-hover:           $lightgray-light !default;
+$tab-radius:                           4px !default;
+
+$tab-font-color:                       $darkgray-dark !default;
+$tab-font-color-active:                $white !default;
+$tab-font-color-acitve:                $bluejeans-light !default;
+
+$tab-border-color:                     $mediumgray-light !default;
+
+.navbar-default {
+  & .navbar-text,
+  & .navbar-nav > li > a {
+    color: white !important;
+  }
+  & .navbar-brand,
+  & .navbar-link,
+  & .btn-link {
+    color: white !important;
+  }
+  & .navbar-toggle .icon-bar {
+    background-color: #E8E6E6 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-justified > li {
+    display: table-cell;
+    width: 1%;
+  }
+  .nav-justified > li > a  {
+    border-bottom: 1px solid #ddd !important;
+    border-radius: 4px 4px 0 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+.newgame__tabs li.active {
+  a {
+    background-color: $bluejeans-light !important;
+    color:white !important;
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.65);
+    -moz-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.65);
+    box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.65);
+  }
+}

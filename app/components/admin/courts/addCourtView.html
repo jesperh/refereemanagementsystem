@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="col-md-12 header-bg" style="padding:0;">
+        <div class="tuho-box-heading">
+            <h3>Lisää uusi kenttä</h3>
+        </div>
+        <div class="tuho-full-width-box">
+            <div class="col-md-6 pull-right">
+
+                <div class="registration-form-headline">
+                    <p>
+                        Toissijainen tapa lisätä kenttiä. Kenttien lisäämiseen pitäisi olla karttanäkymä, jolloin
+                        yhdellä klikillä
+                        saadaan koordinaatit talteen.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <form id="register-form" name="courtForm" ng-submit="vm.submitForm(courtForm.$valid)" novalidate
+                      class="form-horizontal" style="padding-top:10px;">
+                    <div class="form-input-container">
+                        <fieldset>
+
+                            <div ng-class="{ 'has-error': (courtForm.number.$touched || vm.formError) && courtForm.number.$invalid }"
+                                 class="form-group">
+                                <label for="number">Kenttänumero</label>
+                                <input ng-model="vm.court.number" ng-minlength="1" ng-maxlength="3" class="form-control"
+                                       name="number" id="number" placeholder="Kenttänumero" required>
+
+                                <div class="help-block" ng-messages="courtForm.number.$error"
+                                     ng-if="courtForm.number.$touched || vm.formError">
+                                    <p ng-message="required">Tämä on pakollinen kenttä.</p>
+                                    <p ng-message="minlength">Numero on liian lyhyt.</p>
+                                    <p ng-message="maxlength">Numero on liian pitkä.</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div ng-class="{ 'has-error': (courtForm.startTime.$touched || vm.formError) && courtForm.startTime.$invalid }"
+                                         class="col-md-6">
+                                        <label for="startTime">Aloitusaika</label>
+                                        <input ng-model="vm.court.startTime" type="time" min="08:00:00" max="12:00:00"
+                                               class="form-control" name="startTime" id="startTime" placeholder=""
+                                               required>
+
+                                        <div class="help-block" ng-messages="courtForm.startTime.$error"
+                                             ng-if="courtForm.startTime.$touched || vm.formError">
+                                            <p ng-message="required">Tämä on pakollinen kenttä.</p>
+                                            <!--<p ng-message="minlength">Vuosiluku on liian lyhyt.</p>-->
+                                            <!--<p ng-message="maxlength">Vuosiluku on liian pitkä.</p>-->
+                                        </div>
+                                    </div>
+
+                                    <div ng-class="{ 'has-error': (courtForm.endTime.$touched || vm.formError) && courtForm.endTime.$invalid }"
+                                         class="col-md-6">
+                                        <label for="endTime">Lopetusaika</label>
+                                        <input ng-model="vm.court.endTime" type="time" min="12:00:00" max="20:00:00"
+                                               class="form-control" name="endTime" id="endTime" required>
+
+                                        <div class="help-block" ng-messages="courtForm.endTime.$error"
+                                             ng-if="courtForm.endTime.$touched || vm.formError">
+                                            <p ng-message="required">Tämä on pakollinen kenttä.</p>
+                                            <!--<p ng-message="minlength">Vuosiluku on liian lyhyt.</p>-->
+                                            <!--<p ng-message="maxlength">Vuosiluku on liian pitkä.</p>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button style="width:150px; mavmin-bottom:10px" class="btn btn-success">Lähetä</button>
+                            </div>
+
+                        </fieldset>
+
+
+                        <span ng-if="vm.isLoading && !vm.formError && !vm.serverError">Ladataan...</span>
+                        <uib-alert ng-if="vm.formError" type="danger">Lomakkeessa ilmeni virheitä. Korjaa virheet ja
+                            koita uudelleen &nbsp; &#9786;
+                        </uib-alert>
+                        <uib-alert ng-if="vm.serverError" type="danger">Palvelimen puolella sattui virhe.. Kokeile
+                            rekisteröitymistä uudelleen. <br/> Jos ongelma toistuu, ota yhteyttä example@example.com
+                            &nbsp;
+                        </uib-alert>
+                        <uib-alert ng-if="vm.formSuccess" type="success">Uusi turnaus lisättiin onnistuneesti!
+                        </uib-alert>
+                        <div style="height: 40px;"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

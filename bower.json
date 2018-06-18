@@ -1,0 +1,41 @@
+{
+  "name": "bower",
+  "license": "Apache-2.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap-sass-official": "3.3.5",
+    "angular": "~1.5.7",
+    "angular-ui-router": "0.2.15",
+    "angular-animate": "1.5.7",
+    "angular-messages": "1.5.7",
+    "angular-bootstrap": "0.14.3",
+    "components-font-awesome": "~4.5.0",
+    "lodash": "~3.10.1",
+    "leaflet": "leaflet-dist#~0.7.2",
+    "ui-leaflet": "~1.0.0",
+    "angular-touch": "1.5.7",
+    "angular-local-storage": "~0.2.3",
+    "Bootflat": "~2.0.4",
+    "angular-utf8-base64": "~0.0.5"
+  },
+  "exportsOverride": {
+    "bootstrap": {
+      "": "dist/**/*.*"
+    },
+    "angular": {
+      "": "angular{.js,.min.js,.min.js.map, .min.js.gzip}"
+    },
+    "angular-animate": {
+      "": "angular-animate{.js,.min.js,.min.js.map}"
+    },
+    "angular-ui-router": {
+      "": "release/angular-ui-router.{js,min.js,min.js.map}"
+    },
+    "angular-bootstrap": {
+      "": "*.*"
+    }
+  },
+  "resolutions": {
+    "angular": "1.5.7"
+  }
+}

@@ -1,0 +1,45 @@
+<div class="modal-header">
+    <h3 class="modal-title">Käyttäjän tiedot</h3>
+</div>
+
+<div class="modal-body">
+
+    <table class="table table-condensed table-bordered table-striped">
+        <tr>
+            <td>Etunimi: </td><td>{{ ud.user.firstname }}</td>
+        </tr>
+        <tr>
+            <td>Sukunimi: </td><td>{{ ud.user.lastname }}</td>
+        </tr>
+        <tr>
+            <td>Käyttäjänimi: </td><td>{{ ud.user.username }}</td>
+        </tr>
+        <tr>
+            <td>Sähköposti: </td><td>{{ ud.user.email }}</td>
+        </tr>
+        <tr>
+            <td>Puhelin: </td><td>{{ ud.user.phonenumber }}</td>
+        </tr>
+        <tr>
+            <td>Tuomarointikerrat: </td><td>{{ ud.user.experience }}</td>
+        </tr>
+        <tr>
+            <td>Tuomarointi: </td><td>{{ ud.user.interestedReferee }}</td>
+        </tr>
+        <tr>
+            <td>Talkootyöt: </td><td>{{ ud.user.interestedMisc }}</td>
+        </tr>
+        <tr>
+            <td>Terveiset: </td><td>{{ ud.user.greetings }}</td>
+        </tr>
+    </table>
+
+
+    <div style="clear: both"></div>
+
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ud.ok()">OK</button>
+</div>
+

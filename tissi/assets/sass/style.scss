@@ -1,0 +1,78 @@
+@import '../../../assets/css/sass/colors';
+@import '../../assets/sass/overrides';
+@import '../../../assets/css/sass/animations';
+@import '../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap';
+@import '../../../assets/css/sass/fonts';
+@import '../../../bower_components/components-font-awesome/scss/font-awesome';
+@import '../../../bower_components/Bootflat/bootflat/scss/bootflat';
+
+body {
+  //min-height:2000px;
+  padding-top:50px;
+  font-size:16px;
+}
+.b500 {
+  font-weight: 500;
+}
+
+.b400 {
+  font-weight:400;
+}
+
+h3.media-heading {
+    font-size:24px;
+}
+
+.borderless td, .borderless th {
+  border: none;
+}
+
+.tissi-horizontal {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-top: 1px solid #FFC5D1;
+  border-bottom: 1px solid #8C7B7E;
+}
+
+.tissi-block-shadow {
+  -webkit-box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.55);
+  -moz-box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.55);
+  box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.55);
+}
+
+.dropdown-menu {
+  font-size:18px !important;
+}
+
+div.tooltip-inner {
+  font-size:16px !important;
+}
+
+.tooltip.in {
+  opacity: 1 !important;
+  filter: alpha(opacity=100) !important;
+}
+
+.panel-group {
+  .panel-title {
+    padding-left: 10px;
+    font-size:18px;
+  }
+  .panel {
+    margin-bottom: 1px;
+  }
+  .panel-body {
+    background-color: #F9F9F9;
+    padding:15px 10px !important;
+  }
+}
+
+
+$winner-color: $nephritis;
+$loser-color: $grapefruit-dark;
+
+@import '../../assets/sass/animations';
+@import '../../assets/sass/cards';
+@import '../../assets/sass/home';
+@import '../../assets/sass/games';
+@import '../../assets/sass/game';

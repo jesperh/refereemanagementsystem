@@ -1,0 +1,52 @@
+<a href="newgame" class="anchor-list-group-item games__new-game-block card-1">
+    <div class="list-group-item media">
+        <div class="pull-right">
+            <i class="fa fa-3x fa-plus-square-o feature-icon text-primary"></i>
+        </div>
+        <div ng-if="!vm.unfinishedGame" class="media-body">
+            <h3 class="media-heading" style="line-height: 40px;"><i class="fa fa-chevron-right"></i> Uusi peli</h3>
+        </div>
+        <div ng-if="vm.unfinishedGame" class="media-body">
+            <h3 class="media-heading" style="line-height: 40px;"><i class="fa fa-chevron-right"></i> Jatka peliä</h3>
+            <table class="games__list-table borderless">
+                <tbody>
+                    <tr>
+                        <td class="text-center"><span class="games__team-name games__team-label" ng-bind="vm.unfinishedGame.team1.name"></span></td>
+                        <td>vs.</td>
+                        <td ng-class="vm.getTeamClass(game.team2score, game.team1score)" class="text-center"><span class="games__team-name games__team-label" ng-bind="vm.unfinishedGame.team2.name"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</a>
+
+<div class="card-1 games__past-games-block">
+    <h4 class="games__past-games-label">Menneet pelit:</h4>
+</div>
+
+<div class="list-group game-list card-1" >
+        <div class="list-group-item media game-item" style="margin-top:0;" ng-repeat="game in vm.pastGames">
+            <div class="media-body">
+
+                <h3 class="media-heading"><span ng-bind="game.id"></span></h3>
+                <hr class="tissi-horizontal" />
+
+                <table class="games__list-table borderless">
+                    <tbody>
+                        <tr>
+                            <td ng-class="vm.getTeamClass(game.team1score, game.team2score)" class="text-center"><span class="games__team-name games__team-label" ng-bind="game.team1.name"></span></td>
+                            <td>vs.</td>
+                            <td ng-class="vm.getTeamClass(game.team2score, game.team1score)" class="text-center"><span class="games__team-name games__team-label" ng-bind="game.team2.name"></span></td>
+                        </tr>
+                        <tr>
+                            <td ng-class="vm.getTeamClass(game.team1score, game.team2score)" class="text-center"><span class="games__team-name games__team-score"  ng-bind="game.team1score"></span></td>
+                            <td></td>
+                            <td ng-class="vm.getTeamClass(game.team2score, game.team1score)" class="text-center"><span class="games__team-name games__team-score"  ng-bind="game.team2score"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+</div>

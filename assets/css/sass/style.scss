@@ -1,0 +1,113 @@
+@import '../../../assets/css/sass/colors';
+@import '../../../assets/css/sass/overrides';
+@import '../../../assets/css/sass/animations';
+@import '../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap';
+@import '../../../assets/css/sass/fonts';
+@import '../../../bower_components/components-font-awesome/scss/font-awesome';
+
+
+
+
+//.animate-hide {
+//  opacity: 1;
+//}
+//
+//.animate-hide.ng-hide-add, .animate-show.ng-hide-remove {
+//  transition: all linear 0.5s;
+//}
+//
+//.animate-hide.ng-hide {
+//  opacity: 0;
+//}
+
+
+
+
+h1,h2,h3,legend {
+  font-family: "Signika Light" !important;
+}
+
+.tuho-header {
+  h1 {
+    color:white;
+  }
+  padding-bottom: 0;
+  padding-top:0;
+  //background-color: $wet-asphalt;
+}
+
+.tuho-box-heading {
+
+  h3 {
+    margin-top:0;
+    color:white;
+  }
+
+  position:relative;
+  padding: 10px 0px 1px 15px;
+  background-color: $peter-river;
+}
+
+.tuho-box-heading:after {
+  top: 100%;
+  left: 35px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(136, 183, 213, 0);
+  border-top-color: $peter-river;
+  border-width: 10px;
+  margin-left: -10px;
+}
+
+.tuho-box-padding {
+  padding-left:10px;
+  padding-right: 10px;
+}
+
+.tuho-full-width-box {
+  padding: 20px 20px 20px 20px;
+}
+
+.header-bg {
+  background-color: white;
+  border: 15px solid $body-bg;
+}
+
+.tuho-heading {
+  color:$peter-river;
+}
+
+.tuho-header__image {
+  padding:5px;
+  overflow: hidden;
+}
+
+.tuho-news {
+  //background-color: $wet-asphalt;
+}
+
+.tuho-news__date {
+  padding-top: 20px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  font-size: 12px;
+  font-style: italic;
+  color: #6B6B6B;
+
+}
+
+.btn-primary:hover {
+  color:$tuho-orange;
+}
+
+.hover-hand {
+  cursor: pointer;
+}
+
+
+@import '../../../assets/css/sass/register';
+@import '../../../assets/css/sass/map';

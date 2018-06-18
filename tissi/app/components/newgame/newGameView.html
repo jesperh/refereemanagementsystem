@@ -1,0 +1,288 @@
+<!--<div class="btn-group justified nav-tabs">-->
+<!--<a class="btn btn-default active" href="#Tab1" toggle="on" active-class="active">-->
+<!--1. Pääty-->
+<!--</a>-->
+<!--<a class="btn btn-default" href="#Tab2" toggle="on" active-class="active">-->
+<!--2. Pääty-->
+<!--</a>-->
+<!--<a class="btn btn-default" href="#Tab3" toggle="on" active-class="active">-->
+<!--Tulos-->
+<!--</a>-->
+
+<!--</div>-->
+
+<!--<div>-->
+<!--<uib-tabset justified="true">-->
+<!--<uib-tab heading="Justified">Justified content</uib-tab>-->
+<!--<uib-tab heading="SJ">Short Labeled Justified content</uib-tab>-->
+<!--<uib-tab heading="Long Justified">Long Labeled Justified content</uib-tab>-->
+<!--</uib-tabset>-->
+<!--</div>-->
+
+<div ng-if="!vm.game.started">
+    <form id="register-form" name="newgameForm" ng-submit="rg.submitForm(newgameForm.$valid)" novalidate>
+        <div class="list-group-item media card-1">
+            <div class="media-body">
+                <h3 class="media-heading" style="line-height: 40px;">Uusi peli</h3>
+            </div>
+        </div>
+
+        <!--<div class="list-group-item media card-1 card-hover">-->
+        <!--<div class="media-body">-->
+        <!--<p class="">Aloita peli syöttämällä tuloslapusta löytyvä peli-id. Joukkueet valitaan kirjoittamalla hakukenttään joukkueen id ja valitsemalla</p>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!-- GAME -->
+        <div class="list-group-item media card-1 card-hover">
+            <div class="media-body">
+                <span class="game__help-tooltip" tooltip-placement="left" tooltip-append-to-body="true" uib-tooltip="Id on neljä merkkiä, joista kolme ensimmäistä on numero ja viimeinen kirjain.">
+                    <i class="fa fa-question-circle"></i>
+                </span>
+                <p class=""><span class="b500">Pelin id</span> (löytyy tuloslapusta)</p>
+
+                <p><input autocomplete="off" ng-maxlength="6" ng-minlength="1" name="gameid" type="text" class="form-control" ng-model="vm.game.id" placeholder="pelin id" /></p>
+                <div class="help-block" ng-messages="newgameForm.gameid.$error" ng-if="newgameForm.gameid.$touched">
+                    <p style="padding:5px" class="bg-danger tuho-fade" ng-message="minlength"><i class="fa fa-warning"></i> Id on vähintää 1 merkki.</p>
+                    <p style="padding:5px" class="bg-danger tuho-fade" ng-message="maxlength"><i class="fa fa-warning"></i> Id on enintään 6 merkkiä.</p>
+                </div>
+                <!--<p ng-if="newgameForm.gameid.$touched && vm.game.id.length > 5" class="bg-danger tuho-fade" style="padding:5px;margin-top:5px;"><i class="fa fa-warning"></i> Id on max. 5 merkkiä.</p>-->
+            </div>
+        </div>
+
+        <!-- TEAM 1 -->
+        <div class="list-group-item media card-1 card-hover">
+            <div class="media-body" ng-class="{ 'has-error': newgameForm.firstteam.$touched && !vm.game.team1 }" >
+                <span class="game__help-tooltip" tooltip-placement="left" tooltip-append-to-body="true" uib-tooltip="Anna joukkueen id tai nimi ja valitse joukkue hakukentän alapuolelle ilmestyvästä listasta.">
+                    <i class="fa fa-question-circle"></i>
+                </span>
+                <p class=""><span class="b500">Joukkue 1</span><span> (nimi)</span></p>
+
+                <input autocomplete="off" name="firstteam" type="text" ng-minlength="1" ng-model="vm.game.team1" typeahead-append-to-body="true" placeholder="syötä nimi, valitse joukkue ehdotuksista"
+                       uib-typeahead="team as team.name for team in vm.teamsList | filter:  $viewValue | limitTo:5"
+                       typeahead-on-select="model=$item.value" typeahead-select-on-exact="true"  class="form-control">
+
+                <div class="help-block" ng-messages="newgameForm.firstteam.$error" ng-if="newgameForm.firstteam.$touched  &&  !vm.game.team1">
+                    <p style="padding:5px" class="bg-danger tuho-fade" ng-message="minlength"><i class="fa fa-warning"></i>  Nimi on vähintään 1 merkki.</p>
+                </div>
+                <!--<p ng-if="newgameForm.firstteam.$touched && vm.game.team1.length == 4 && !vm.game.team1.id" class="bg-danger tuho-fade" style="padding:5px;margin-top:5px;">-->
+                    <!--<i class="fa fa-warning"></i> Virheellinen joukkue.<br/>-->
+                    <!--Muistithan valita joukkueen ehdotukset -listasta?<br/>-->
+                    <!--Jos id on varmasti oikein, anna joukkueen nimi:-->
+                    <!--<input type="text" class="form-control" ng-model="vm.team1name" placeholder="Joukkueen 1 nimi" />-->
+                <!--</p>-->
+            </div>
+        </div>
+
+        <!-- TEAM 2 -->
+        <div class="list-group-item media card-1 card-hover">
+            <div class="media-body" ng-class="{ 'has-error': newgameForm.secondteam.$touched && !vm.game.team2 }" >
+                <span class="game__help-tooltip" tooltip-placement="left" tooltip-append-to-body="true" uib-tooltip="Anna joukkueen id tai nimi ja valitse joukkue hakukentän alapuolelle ilmestyvästä listasta.">
+                    <i class="fa fa-question-circle"></i>
+                </span>
+                <p class=""><span class="b500">Joukkue 2</span><span> (nimi)</span></p>
+
+                <input autocomplete="off" name="secondteam" type="text" ng-model="vm.game.team2" typeahead-append-to-body="true" placeholder="syötä nimi, valitse joukkue listasta"
+                       uib-typeahead="team as team.name for team in vm.teamsList | filter:  $viewValue | limitTo:5"
+                       typeahead-on-select="model=$item.value" typeahead-select-on-exact="true"  class="form-control">
+                <div class="help-block" ng-messages="newgameForm.secondteam.$error" ng-if="newgameForm.secondteam.$touched">
+                    <p style="padding:5px" class="bg-danger tuho-fade" ng-message="minlength"><i class="fa fa-warning"></i>  Nimi on vähintää 1 merkki.</p>
+                </div>
+                <!--<p ng-if="newgameForm.secondteam.$touched && vm.game.team2.length == 4 && !vm.game.team2.id" class="bg-danger tuho-fade" style="padding:5px;margin-top:5px;">-->
+                    <!--<i class="fa fa-warning"></i> Virheellinen joukkue.<br/>-->
+                    <!--Muistithan valita joukkueen ehdotukset -listasta?<br/>-->
+                    <!--Jos id on varmasti oikein, anna joukkueen nimi:-->
+                    <!--<input type="text" class="form-control" ng-model="vm.team2name" placeholder="Joukkueen 2 nimi" />-->
+                <!--</p>-->
+                <p ng-if="vm.sameTeamError" class="bg-danger" style="padding:5px;margin-top:5px;">
+                    <i class="fa fa-exclamation-circle"></i> Virhe: Joukkueet ovat samat!
+                </p>
+            </div>
+        </div>
+
+        <div style="padding:5px; margin-top:10px;">
+            <button ng-disabled="vm.newGameButtonDisabled()" class="btn btn-block btn-lg btn-primary tissi-fade" ng-click="vm.startGame()">Aloita peli</button>
+            <!--<button ng-disabled="vm.newModifiedGameButtonDisabled()" ng-if="vm.confirmStart" class="btn btn-block btn-lg btn-warning tissi-fade" ng-click="vm.startGameWithCustomTeams()">Aloita peli muokatuilla tiedoilla</button>-->
+        </div>
+
+
+    </form>
+</div>
+
+<!--{{ vm.game }}-->
+
+<!-- todo: make game-halfs a directive -->
+<div ng-if="vm.game.started" class="newgame__tabs tissi-fade" style="font-size:18px">
+    <uib-tabset justified="true">
+        <!-- FIRST HALF -->
+        <uib-tab heading="1. Pääty">
+
+            <div class="list-group-item media card-1 card-hover" ng-if="!vm.game.ready && vm.firstHalf.ready">
+                <button ng-click="vm.makeHalfEditable(1)" class="btn btn-block btn-lg btn-primary"><i class="fa fa-pencil-square"></i> Muokkaa päätyä</button>
+            </div>
+
+            <!-- FIRST TEAM -->
+            <div class="list-group-item media card-1 card-hover" ng-class="{ 'game__half-locked': vm.firstHalf.ready }">
+                <div half-game-team="" locked="vm.firstHalf.ready || vm.game.ready" form-name="firsthalfteam1score" calculate-score="vm.calculateScore(score)" team-name="vm.game.team1.name" score="vm.firstHalf.team1score"></div>
+            </div>
+
+            <!--{{ vm.firstHalf.team1score }}-->
+            <!-- SECOND TEAM -->
+            <div class="list-group-item media card-1 card-hover" ng-class="{ 'game__half-locked': vm.firstHalf.ready }">
+                <div half-game-team="" locked="vm.firstHalf.ready || vm.game.ready" form-name="firsthalfteam2score" calculate-score="vm.calculateScore(score)" team-name="vm.game.team2.name" score="vm.firstHalf.team2score"></div>
+            </div>
+
+            <div class="list-group-item media card-1 card-hover">
+                <button ng-disabled="vm.firstHalf.ready" ng-click="vm.makeHalfReady(1)" class="btn btn-block btn-lg btn-primary">1. pääty valmis!</button>
+            </div>
+           <!-- {{ vm.firstHalf.team2score }}-->
+        </uib-tab>
+
+        <!-- SECOND HALF -->
+        <uib-tab heading="2. Pääty">
+
+            <div class="list-group-item media card-1 card-hover" ng-if="!vm.game.ready && vm.secondHalf.ready">
+                <button ng-click="vm.makeHalfEditable(2)" class="btn btn-block btn-lg btn-primary"><i class="fa fa-pencil-square"></i> Muokkaa päätyä</button>
+            </div>
+
+            <p style="padding:5px" class="bg-warning tuho-fade" ng-if="!vm.firstHalf.ready">
+                <i class="fa fa-exclamation-circle"></i>
+                Voit antaa 2. päädyn tuloksia vasta kun 1. pääty on valmis.
+            </p>
+            <!-- FIRST TEAM -->
+            <div class="list-group-item media card-1 card-hover" ng-class="{ 'game__half-locked': !vm.firstHalf.ready || vm.secondHalf.ready}">
+                <div half-game-team="" locked="vm.secondHalf.ready || !vm.firstHalf.ready || vm.game.ready" form-name="secondhalfteam1score" calculate-score="vm.calculateScore(score)" team-name="vm.game.team1.name" score="vm.secondHalf.team1score"></div>
+            </div>
+
+            <!--{{ vm.firstHalf.team1score }}-->
+            <!-- SECOND TEAM -->
+            <div class="list-group-item media card-1 card-hover" ng-class="{ 'game__half-locked': !vm.firstHalf.ready || vm.secondHalf.ready }">
+                <div half-game-team="" locked="vm.secondHalf.ready || !vm.firstHalf.ready || vm.game.ready" form-name="secondhalfteam2score" calculate-score="vm.calculateScore(score)" team-name="vm.game.team2.name" score="vm.secondHalf.team2score"></div>
+            </div>
+
+            <div class="list-group-item media card-1 card-hover">
+                <button ng-disabled="vm.secondHalf.ready || !vm.firstHalf.ready" ng-click="vm.makeHalfReady(2)" class="btn btn-block btn-lg btn-primary">2. pääty valmis!</button>
+            </div>
+            <!-- {{ vm.firstHalf.team2score }}-->
+        </uib-tab>
+
+        <!-- END -->
+        <uib-tab heading="Tulos">
+
+            <div class="list-group-item media card-1 card-hover">
+                <h3 class="newgame__half-team-name">Tulos <span style="font-size:70%" ng-if="!vm.firstHalf.ready || !vm.secondHalf.ready">(peli on kesken)</span></h3>
+                <div class="row">
+                    <div class="col-xs-5">
+                        <p ng-class="vm.getResultClass('team1')">
+                            {{ vm.game.team1.name }}
+                        </p>
+                    </div>
+                    <div class="col-xs-2">
+                        vs.
+                    </div>
+                    <div class="col-xs-5">
+                        <p style="text-align:right;" ng-class="vm.getResultClass('team2')">
+                            {{ vm.game.team2.name }}
+                        </p>
+                    </div>
+                </div>
+                <hr class="tissi-horizontal" />
+                <div class="row">
+                    <div class="col-xs-5">
+                        <p ng-class="vm.getResultClass('team1')">
+                            {{ vm.game.team1score }}
+                        </p>
+                    </div>
+                    <div class="col-xs-2">
+                        vs.
+                    </div>
+                    <div class="col-xs-5">
+                        <p style="text-align:right;" ng-class="vm.getResultClass('team2')">
+                            {{ vm.game.team2score }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-group-item media card-1 card-hover" ng-if="vm.firstHalf.ready && vm.secondHalf.ready && vm.checkDraw() == false">
+                <p>Voittaja on: <span class="game__result-winner">{{ vm.getWinnerTeamName() }}</span></p>
+            </div>
+
+            <div ng-if="vm.checkDraw() == true && vm.firstHalf.ready && vm.secondHalf.ready" class="list-group-item media card-1 card-hover">
+                <h4>TASAPELI!</h4>
+                <p class="text-danger">Jos peli ei ole alkulohkon peli, pelatkaa lyhyt uusinta.</p>
+                <button  ng-disabled="vm.game.ready" ng-click="vm.playOvertime = true" class="btn btn-block btn-lg btn-primary">Pelaa lyhyt uusinta</button>
+            </div>
+
+            <div ng-if="vm.playOvertime == true && vm.firstHalf.ready && vm.secondHalf.ready" class="list-group-item media card-1 card-hover" ng-if="vm.firstHalf.ready && vm.secondHalf.ready">
+
+                <h4>Lyhyt uusinta:
+                    <span tooltip-placement="top" tooltip-append-to-body="true"
+                          uib-tooltip="Neljä kyykkätornia tasasin välein. Jokainen pelaaja heittää yhden kartun. Molemmat joukkueet pelaavat samaan päätyyn.">
+                          <i class="fa fa-question-circle"></i>
+                    </span>
+                </h4>
+
+                <div overtime-team="" locked="vm.overtime.ready" form-name="overtimeteam1score" calculate-score="vm.calculateScore(score)" team-name="vm.game.team1.name" score="vm.overtime.team1score"></div>
+
+                <hr class="tissi-horizontal">
+
+                <div overtime-team="" locked="vm.overtime.ready" form-name="overtimeteam2score" calculate-score="vm.calculateScore(score)" team-name="vm.game.team2.name" score="vm.overtime.team2score"></div>
+
+                <br/>
+
+                <button ng-disabled="vm.game.ready" ng-click="vm.finishOvertime()" class="btn btn-block btn-lg btn-primary">
+                    <i ng-if="!vm.sendingResults" class="fa fa-check-square"></i>
+                    <span ng-if="vm.sendingResults"><i class="fa fa-spinner fa-spin"></i></span>
+                    Lähetä tulokset</button>
+                <p ng-if="vm.game.ready" style="padding:5px; margin-top:10px;" class="bg-success tuho-fade">
+                    <i class="fa fa-check-square"></i>
+                    Tulokset lähetetty!<br/>
+                    <a href="/tissi">Siirry etusivulle</a>
+                </p>
+
+
+
+                <!--<button ng-click="vm.makeHalfReady(3)" ng-if="!vm.overtime.ready" class="btn btn-block btn-lg btn-primary">Lyhyt uusinta valmis!</button>-->
+                <!--<button  ng-click="vm.makeHalfEditable(3)"  ng-if="vm.overtime.ready" class="btn btn-block btn-lg btn-primary"><i class="fa fa-pencil-square"></i> Muokkaa tulosta</button>-->
+            </div>
+
+
+            <div class="list-group-item media card-1 card-hover" ng-if="!vm.playOvertime">
+                <button ng-disabled="!vm.firstHalf.ready || !vm.secondHalf.ready || vm.sendingResults || vm.game.ready" ng-click="vm.finishGame()" class="btn btn-block btn-lg btn-primary">
+                    <i ng-if="!vm.sendingResults" class="fa fa-check-square"></i>
+                    <span ng-if="vm.sendingResults"><i class="fa fa-spinner fa-spin"></i></span>
+                    Lähetä tulokset</button>
+                <p ng-if="!vm.firstHalf.ready || !vm.secondHalf.ready" style="padding:5px; margin-top:10px;" class="bg-warning tuho-fade">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Peli on vielä kesken - et voi lähettää tuloksia, ennen kuin molemmat päädyt ovat merkattu valmiiksi.
+                </p>
+                <p ng-if="vm.game.ready && !vm.sendResultsFailed" style="padding:5px; margin-top:10px;" class="bg-success tuho-fade">
+                    <i class="fa fa-check-square"></i>
+                    Tulokset lähetetty!<br/>
+                    <a href="/tissi">Siirry etusivulle</a>
+                </p>
+                <p ng-if="vm.game.ready && vm.sendResultsFailed" style="padding:5px; margin-top:10px;" class="bg-danger tuho-fade">
+                    <i class="fa a-exclamation-circle"></i>
+                    Tulosten lähettäminen epäonnistui. Kokeile hetken päästä uudestaan. Jos tulosten lähettäminen ei onnistu millään, kirjaa tulokset normaalisti paperiseen tuloslappuun ja ota yhteys päätuomareihin. Voit sitten aloittaa uuden pelin.<br/>
+                    <a href="/tissi">Siirry etusivulle</a>
+                </p>
+
+                <br/>
+                <hr class="tissi-horizontal" />
+                <br/>
+
+                <div ng-if="!vm.game.ready">
+                    <button ng-click="vm.cancelGame()" class="btn btn-block btn-danger">Keskeytä peli</button>
+                    <p>Pelin keskeyttäminen tuhoaa pelin tilan selaimen muistista. Eli sivun päivittämisen jälkeen keskeneräisen pelin tulokset häviävät. </p>
+
+                </div>
+
+
+            </div>
+
+        </uib-tab>
+    </uib-tabset>
+</div>
+
+<br/>

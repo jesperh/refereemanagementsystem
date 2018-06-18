@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-md-12 header-bg" style="padding:0;">
+        <div class="tuho-full-width-box">
+            <h3 style="margin-top:0">Turnaukset</h3>
+            <table class="table table-striped table-bordered table-hover table-condensed">
+                <tr>
+                    <td>#</td>
+                    <th>Nimi</th>
+                    <th>Vuosiluku</th>
+                </tr>
+                <tr ng-repeat="tournament in vm.tournamentsList track by tournament.id">
+                    <td>{{ $index +1}}</td>
+                    <td>{{tournament.title}}</td>
+                    <td>{{tournament.year}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/ng-template" id="tournamentslistPopover.html">
+    <div>
+        <h4>Moro</h4>
+        <p></p>
+    </div>
+</script>

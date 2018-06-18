@@ -1,0 +1,51 @@
+$score-input-line-height: 45px;
+
+.game__help-tooltip {
+  font-size: 20px;
+  position: absolute;
+  right: 5px;
+  top: -5px;
+  padding: 5px;
+}
+
+.newgame__half-team-name {
+  margin-top:0;
+}
+
+.newgame__team2-score-block {
+  margin-top:10px;
+  padding-bottom:10px;
+}
+
+.game__score-input {
+  line-height: $score-input-line-height;
+  input {
+    height: initial;
+    font-size: 22px;
+    padding: 6px 8px;
+    text-align: center;
+  }
+}
+
+.game__team-score-display {
+  font-size: 20px;
+}
+
+.game__half-locked {
+  background-color: #D9CCCC;
+}
+
+.game__result-draw {
+  color: #acacac;
+}
+
+.game__result-winner {
+  color: $winner-color;
+  font-size:110%;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.game__result-loser {
+  color: $loser-color;
+}

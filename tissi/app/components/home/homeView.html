@@ -1,0 +1,64 @@
+<div class="jumbotron home__jumbotron" >
+    <div class="container">
+        <h4 class="text-center">TuloksIen Sähköinen Seuranta- ja Ilmoittamisjärjestelmä</h4>
+        <p class="text-center">Täällä ilmotellaan tuloksia</p>
+    </div>
+</div>
+
+<div class="list-group home__page-list" ng-if="main.localStorageWarning">
+    <div class="list-group-item media card-1 card-hover" style="background-color:#fcf8e3">
+        <p>Selaimesi ei tue "Local Storage" palvelua. Tästä johtuen sivun päivittäminen tyhjentää aloitetun pelin kaikki tiedot. <br/>Tiedot saattavat myös hävitä itsestään, jos lukitset näytön. </p>
+    </div>
+</div>
+
+<div class="list-group home__page-list tissi-fade" ng-if="!main.loggedin()">
+    <div class="list-group-item media game-item card-1 card-hover">
+        <form class="form center-block">
+            <div class="form-group" ng-class="{ 'has-error': vm.usernameError}">
+                <input type="text" ng-model="vm.username" class="form-control input input-lg" placeholder="Käyttäjänimi">
+                <p ng-if="vm.usernameError" class="help-block">Käyttäjänimi unohtui :)</p>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': vm.passwordError}">
+                <input type="password" ng-model="vm.password" class="form-control input  input-lg" placeholder="Salasana">
+                <p ng-if="vm.passwordError" class="help-block">Salasana unohtui :)</p>
+            </div>
+            <div class="form-group">
+                <button ng-disabled="vm.isLoading" ng-click="vm.login(vm.username, vm.password)" class="btn btn-lg btn-primary btn-block" style="margin-bottom:7px;"><span ng-if="vm.isLoading"><i class="fa fa-spin fa-spinner"></i></span> Kirjaudu sisään</button>
+            </div>
+
+            <p ng-hide="vm.loginSucceeded" class="pull-left"><a ui-sref="forgot" target="_blank">Unohtuiko salasana? &raquo; Resetoi salasana</a></p>
+            <div style="clear: both;"></div>
+            <uib-alert ng-if="vm.loginSucceeded==false" type="danger">Virhe: Käyttäjänimi ja salasana eivät täsmänneet.</uib-alert>
+            <uib-alert ng-if="vm.loginSucceeded" type="success">Kirjautuminen onnistui &#9786;.</uib-alert>
+        </form>
+    </div>
+</div>
+<div ng-if="main.loggedin()">
+    <div class="list-group home__page-list">
+        <a href="games" class="anchor-list-group-item">
+            <div class="list-group-item media card-1 card-hover">
+                <div class="pull-right">
+                    <i class="fa fa-3x fa-pencil-square-o feature-icon text-primary"></i>
+                </div>
+                <div class="media-body">
+                    <h3 class="media-heading">Pisteidenlaskenta</h3>
+                    Siirry aloittamaan uusia pelejä ja selaamaan vanhoja tuloksia.
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="list-group home__page-list card-1 card-hover">
+        <a href="special" class="anchor-list-group-item">
+            <div class="list-group-item">
+                <div class="pull-right">
+                    <i class="fa fa-3x fa-book feature-icon text-primary"></i>
+                </div>
+                <div class="media-body">
+                    <h3 class="media-heading">Kinkkiset tilanteet</h3>
+                    Tänne on listattu yleisimpia erikoistapauksia.
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

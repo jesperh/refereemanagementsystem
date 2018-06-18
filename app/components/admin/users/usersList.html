@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col-md-12 header-bg" style="padding:0;">
+        <div class="tuho-full-width-box">
+            <h3 style="margin-top:0">Rekisteröityneet käyttäjät.</h3>
+
+            <p>
+                <label>Etsi: <input type="text" ng-model="vm.searchTerm" ng-model-options="{debounce:500}" autofocus></label>
+                <label><input type="checkbox" ng-model="vm.isInterestedThisYear"> Vain tänä vuonna ginostuneed</label>
+            </p>
+            <table class="table table-striped table-bordered table-hover table-condensed">
+                <tr>
+                    <td>#</td>
+                    <td>Tuomari</td>
+                    <th>
+                        <a href="#" ng-click="vm.sortType = 'firstname'; vm.sortReverse = !vm.sortReverse">
+                            Etunimi
+                            <span ng-show="vm.sortType == 'firstname' && !vm.sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="vm.sortType == 'firstname' && vm.sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="#" ng-click="vm.sortType = 'lastname'; vm.sortReverse = !vm.sortReverse">
+                            Sukunimi
+                            <span ng-show="vm.sortType == 'lastname' && !vm.sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="vm.sortType == 'lastname' && vm.sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="#" ng-click="vm.sortType = 'username'; vm.sortReverse = !vm.sortReverse">
+                            Käyttäjätunnus
+                            <span ng-show="vm.sortType == 'username' && !vm.sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="vm.sortType == 'username' && vm.sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="#" ng-click="vm.sortType = 'email'; vm.sortReverse = !vm.sortReverse">
+                            Sähköposti
+                            <span ng-show="vm.sortType == 'email' && !vm.sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="vm.sortType == 'email' && vm.sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="#" ng-click="vm.sortType = 'experience'; vm.sortReverse = !vm.sortReverse">
+                            Tuomarointikerrat
+                            <span ng-show="vm.sortType == 'experience' && !vm.sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="vm.sortType == 'experience' && vm.sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                </tr>
+                <tr ng-repeat="user in vm.usersList | orderBy:vm.sortType:vm.sortReverse | filter:vm.searchTerm | isInterested : vm.isInterestedThisYear track by user.id" >
+
+                    <!--<td><a popover-trigger="mouseenter" popover-placement="top" uib-popover-template="'userslistPopover.html'" popover-title="Käyttäjä">{{user.firstname}}</a></td>-->
+                    <td>{{ $index +1}}</td>
+                    <td class="text-center">
+                        <span title="Lisää tuomariksi" ng-if="!vm.isReferee(user)" class="hover-hand" style="padding:5px"><i ng-click="vm.makeReferee(user)" class="fa fa-plus-circle"></i></span>
+                        <span title="Avaa tuomari" ng-if="vm.isReferee(user)">Todo: <i class="fa fa-folder-open"></i> </span>
+                    </td>
+                    <td><a class="hover-hand" ng-click="vm.openInModal(user)">{{user.firstname}}</a></td>
+                    <td>{{user.lastname}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.experience}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="userslistPopover.html">
+    <div>
+        <h4>Moro</h4>
+        <p></p>
+    </div>
+</script>
