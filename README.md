@@ -4,11 +4,11 @@ Referee management system built for managing the referees of a kyykka tournament
 
 ## Getting Started
 
-Demo available at https://rms-kyykka.herokuapp.com
-User with admin privileges: admin : rul3R
-User with basic privileges: user : regul4R
-
-Login and check https://rms-kyykka.herokuapp.com/admin/map
+Demo available at https://rms-kyykka.herokuapp.com<br/>
+User with admin privileges: admin : rul3R<br/>
+User with basic privileges: user : regul4R<br/>
+<br/>
+Login and check https://rms-kyykka.herokuapp.com/admin/map<br/>
 This is where the fancy stuff is located
 
 ## General info
@@ -55,5 +55,4 @@ This project is licensed under the MIT License
 ## Notes
 
 * This system was built many years ago in a great hurry
-* However, it works very well but there is still room for impovements
-* etc
+* However, it works very well but there is still room for improvements
