@@ -46,7 +46,7 @@
     "sequelize-cli": "^2.1.0",
     "sqlite3": "^3.1.0",
     "typings": "^2.0.0",
-    "uglify-js": "2.4.20"
+    "uglify-js": "2.6.0"
   },
   "devDependencies": {
     "grunt-typings": "^0.1.5"
