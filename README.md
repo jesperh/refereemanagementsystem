@@ -4,20 +4,11 @@ Referee management system built for managing the referees of a kyykka tournament
 
 ## Getting Started
 
-Demo available at https://rms-kyykka.herokuapp.com<br/>
-User with admin privileges: admin : rul3R<br/>
-User with basic privileges: user : regul4R<br/>
-<br/>
-Login and check https://rms-kyykka.herokuapp.com/admin/map<br/>
-This is where the fancy stuff is located
 
 ## General info
 
 This application is divided into three parts:
 
-* The referee view: https://rms-kyykka.herokuapp.com, where users can register and modify their info
-* The admin view: https://rms-kyykka.herokuapp.com/admin (requires admin privileges), where admins can manage referees, courts, etc.
-* The score reporting (mobile) view: https://rms-kyykka.herokuapp.com/tissi, where referees report the scores of games
 
 ### Prerequisites
 
